@@ -1,0 +1,199 @@
+:root {
+  --bg-clear: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+  --bg-cloudy: linear-gradient(to bottom, #d7d2cc, #304352);
+  --bg-rain: linear-gradient(to bottom, #4b79a1, #283e51);
+  --bg-snow: linear-gradient(to bottom, #e6dada, #274046);
+  --bg-mist: linear-gradient(to bottom, #abbaab, #ffffff);
+  --bg-default: linear-gradient(to bottom, #83a4d4, #b6fbff);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-default);
+  background-size: cover;
+  transition: background 1s ease;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+.weather-info {
+  margin-top: 1.5rem;
+}
+
+.weather-info img {
+  width: 64px;
+  height: 64px;
+  margin: 0.5rem auto;
+}
+
+.weather-info p {
+  margin: 8px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+/* --- WEATHER ANIMATIONS --- */
+
+.animation-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* RAIN */
+.rain-drop {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: #00f;
+  opacity: 0.4;
+  animation: rainFall 1s linear infinite;
+}
+
+@keyframes rainFall {
+  0% { transform: translateY(-100px); }
+  100% { transform: translateY(100vh); }
+}
+
+/* SNOW */
+.snowflake {
+  position: absolute;
+  color: white;
+  font-size: 1.2rem;
+  animation: snowFall 5s linear infinite;
+}
+
+@keyframes snowFall {
+  0% { transform: translateY(-20px) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* SUN */
+.sun {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: yellow;
+  border-radius: 50%;
+  top: 30px;
+  left: 30px;
+  z-index: 0;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CLOUDS */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: cloudFloat 15s linear infinite;
+}
+
+.cloud::after,
+.cloud::before {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.cloud1 {
+  width: 100px;
+  height: 60px;
+  top: 20%;
+  left: -100px;
+}
+
+.cloud1::before {
+  width: 60px;
+  height: 60px;
+  top: -20px;
+  left: 20px;
+}
+
+.cloud1::after {
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left: 60px;
+}
+
+@keyframes cloudFloat {
+  0% { left: -150px; }
+  100% { left: 100%; }
+}
+
+/* FOG */
+.fog {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(200, 200, 200, 0.3);
+  z-index: 1;
+}
